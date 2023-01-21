@@ -1,4 +1,4 @@
-package edu.ggg.waarestfullab3.domain.dto;
+package edu.ggg.waarestfullab4.domain.dto;
 
 import lombok.Data;
 

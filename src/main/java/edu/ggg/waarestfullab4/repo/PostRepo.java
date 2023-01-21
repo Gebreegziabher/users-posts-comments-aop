@@ -1,7 +1,6 @@
-package edu.ggg.waarestfullab3.repo;
+package edu.ggg.waarestfullab4.repo;
 
-import edu.ggg.waarestfullab3.domain.Post;
-import edu.ggg.waarestfullab3.domain.dto.PostDto;
+import edu.ggg.waarestfullab4.domain.Post;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

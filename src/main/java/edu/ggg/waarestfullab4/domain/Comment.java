@@ -1,4 +1,4 @@
-package edu.ggg.waarestfullab3.domain;
+package edu.ggg.waarestfullab4.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

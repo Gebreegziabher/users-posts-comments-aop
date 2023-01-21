@@ -1,11 +1,11 @@
-package edu.ggg.waarestfullab3.services.Impl;
+package edu.ggg.waarestfullab4.services.Impl;
 
-import edu.ggg.waarestfullab3.domain.User;
-import edu.ggg.waarestfullab3.domain.dto.CommentDto;
-import edu.ggg.waarestfullab3.domain.dto.PostDto;
-import edu.ggg.waarestfullab3.domain.dto.UserDto;
-import edu.ggg.waarestfullab3.repo.UserRepo;
-import edu.ggg.waarestfullab3.services.UserService;
+import edu.ggg.waarestfullab4.domain.User;
+import edu.ggg.waarestfullab4.domain.dto.CommentDto;
+import edu.ggg.waarestfullab4.domain.dto.PostDto;
+import edu.ggg.waarestfullab4.domain.dto.UserDto;
+import edu.ggg.waarestfullab4.repo.UserRepo;
+import edu.ggg.waarestfullab4.services.UserService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

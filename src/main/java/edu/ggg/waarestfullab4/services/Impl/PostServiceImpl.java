@@ -1,9 +1,9 @@
-package edu.ggg.waarestfullab3.services.Impl;
+package edu.ggg.waarestfullab4.services.Impl;
 
-import edu.ggg.waarestfullab3.domain.Post;
-import edu.ggg.waarestfullab3.domain.dto.PostDto;
-import edu.ggg.waarestfullab3.repo.PostRepo;
-import edu.ggg.waarestfullab3.services.PostService;
+import edu.ggg.waarestfullab4.domain.Post;
+import edu.ggg.waarestfullab4.domain.dto.PostDto;
+import edu.ggg.waarestfullab4.repo.PostRepo;
+import edu.ggg.waarestfullab4.services.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

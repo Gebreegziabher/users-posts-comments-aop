@@ -1,10 +1,9 @@
-package edu.ggg.waarestfullab3.services.Impl;
+package edu.ggg.waarestfullab4.services.Impl;
 
-import edu.ggg.waarestfullab3.domain.Comment;
-import edu.ggg.waarestfullab3.domain.dto.CommentDto;
-import edu.ggg.waarestfullab3.domain.dto.PostDto;
-import edu.ggg.waarestfullab3.repo.CommentRepo;
-import edu.ggg.waarestfullab3.services.CommentService;
+import edu.ggg.waarestfullab4.domain.Comment;
+import edu.ggg.waarestfullab4.domain.dto.CommentDto;
+import edu.ggg.waarestfullab4.repo.CommentRepo;
+import edu.ggg.waarestfullab4.services.CommentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

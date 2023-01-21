@@ -1,6 +1,6 @@
-package edu.ggg.waarestfullab3.services;
+package edu.ggg.waarestfullab4.services;
 
-import edu.ggg.waarestfullab3.domain.dto.PostDto;
+import edu.ggg.waarestfullab4.domain.dto.PostDto;
 
 import java.util.List;
 

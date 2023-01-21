@@ -1,9 +1,7 @@
-package edu.ggg.waarestfullab3.controller;
+package edu.ggg.waarestfullab4.controller;
 
-import edu.ggg.waarestfullab3.domain.dto.CommentDto;
-import edu.ggg.waarestfullab3.domain.dto.PostDto;
-import edu.ggg.waarestfullab3.services.CommentService;
-import edu.ggg.waarestfullab3.services.PostService;
+import edu.ggg.waarestfullab4.domain.dto.CommentDto;
+import edu.ggg.waarestfullab4.services.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
