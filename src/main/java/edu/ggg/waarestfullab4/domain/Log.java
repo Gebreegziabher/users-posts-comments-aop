@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -16,13 +17,24 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "Log")
 public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate date;
-    private LocalTime time;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private String principle;
     private String operation;
+    private String exception;
+
+    public Log(LocalDate date, LocalTime startTime, LocalTime endTime, String principle, String operation, String exception){
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.principle = principle;
+        this.operation = operation;
+        this.exception = exception;
+    }
 }

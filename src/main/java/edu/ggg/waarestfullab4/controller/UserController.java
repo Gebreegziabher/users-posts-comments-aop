@@ -1,5 +1,6 @@
 package edu.ggg.waarestfullab4.controller;
 
+import edu.ggg.waarestfullab4.aspect.annotation.ExecutionTime;
 import edu.ggg.waarestfullab4.domain.dto.CommentDto;
 import edu.ggg.waarestfullab4.domain.dto.PostDto;
 import edu.ggg.waarestfullab4.domain.dto.UserDto;
@@ -48,6 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
+    @ExecutionTime
     public UserDto getById(@PathVariable("id") int id){
         return service.findById(id);
     }

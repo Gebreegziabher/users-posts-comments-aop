@@ -1,5 +1,6 @@
 package edu.ggg.waarestfullab4.controller;
 
+import edu.ggg.waarestfullab4.aspect.annotation.Logger;
 import edu.ggg.waarestfullab4.domain.dto.PostDto;
 import edu.ggg.waarestfullab4.services.PostService;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,13 @@ public class PostController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
+    @Logger
     public List<PostDto> findAll(@RequestParam(value = "title",required = false) String title){
         return title==null?service.findAll():service.findByTitle(title);
     }
 
     @GetMapping("/{id}")
+    @Logger
     public PostDto getById(@PathVariable("id") int id){
         return service.findById(id);
     }

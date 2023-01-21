@@ -1,73 +1,58 @@
 package edu.ggg.waarestfullab4.aspect;
 
+import edu.ggg.waarestfullab4.domain.Log;
+import edu.ggg.waarestfullab4.services.Impl.LogServiceImpl;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+@Aspect
+@Component
 public class LoggerAspect {
-    //This point cut will execute where ever the annotation is placed
-    @Pointcut("@annotation(edu.ggg.waarestfullab4.aspect.annotation.Logger)")
-    public void logMeAnnotation(){}
-
-//    @Before("logMeAnnotation()")
-//    public void logBeforeByAnnotation(JoinPoint joinPoint){
-//        System.out.println("Log before the method: " + joinPoint.getSignature().getName());
-//    }
-//
-//    @After("logMeAnnotation()")
-//    public void logAfterByAnnotation(JoinPoint joinPoint){
-//        System.out.println("Log after the method: " + joinPoint.getSignature().getName());
-//    }
-
-    // This point cut will execute according to the given designations
-    @Pointcut("execution( * edu.miu.springaop.controller.ProductController.*(..))")
-    public void logMe() {
+    private LogServiceImpl service;
+    public LoggerAspect(LogServiceImpl service){
+        this.service = service;
     }
 
-//    @Pointcut("@args(edu.miu.springaop.aspect.annotation.LogMe)")
-//    public void logMeAnnotation2() {
-//
-//    }
+    //@Pointcut("@annotation(edu.ggg.waarestfullab4.aspect.annotation.Logger)")
+    @Pointcut("within(edu.ggg.waarestfullab4.controller..*)")
+    public void logAround(){}
 
-//    // This point cut will execute according to the given designations
-//    @Pointcut("target(edu.miu.springaop.controller.ProductController)")
-//    public void logMe() {
-//    }
+    @Pointcut("within(edu.ggg.waarestfullab4.controller..*)" +
+            " || within(edu.ggg.waarestfullab4.services..*)" +
+            " || within(edu.ggg.waarestfullab4.repo..*)")
+    public void logException(){}
 
-//    // This point cut will execute according to the given designations
-//    @Pointcut("execution( * *.*.*(..))")
-//    public void logMe() {
-//    }
-
-//    // This point cut will execute according to the given designations //  edu.miu.springaop
-//    @Pointcut("within(edu.miu.springaop.controller.ProductController)")
-//    public void logMe() {
-//    }
-
-
-    @Before("logMe()")
-    public void logBefore(JoinPoint joinPoint) {
-        System.out.println("Log before the method: " + joinPoint.getSignature().getName());
+    @Around(value = "logAround()")
+    public void logAround(ProceedingJoinPoint joinPoint) throws Throwable
+    {
+        Log log = new Log(
+                LocalDate.now(),
+                LocalTime.now(),
+                LocalTime.now(),
+                "Anonymous",
+                joinPoint.getSourceLocation().getWithinType().getName()+"."+joinPoint.getSignature().getName(),
+                null
+        );
+        joinPoint.proceed();
+        log.setEndTime(LocalTime.now());
+        service.save(log);
     }
 
-    @After("logMe()")
-    public void logAfter(JoinPoint joinPoint) {
-        System.out.println("Log after the method: " + joinPoint.getSignature().getName());
+    @AfterThrowing(value = "logException()", throwing = "exception")
+    public void logAfterThrowing(JoinPoint joinPoint, Exception exception) {
+        Log log = new Log(
+                LocalDate.now(),
+                null,
+                null,
+                "Anonymous",
+                "Class: "+joinPoint.getSourceLocation().getWithinType().getName()+"|Signature:"+ joinPoint.getSignature().getName(),
+                "MESSAGE: "+exception.getMessage()+" STACK TRACE: "+exception.getStackTrace()
+        );
+        service.save(log);
     }
-
-    @AfterReturning("logMe()")
-    public void logAfterReturning(JoinPoint joinPoint) {
-        System.out.println("Log after returned the method: " + joinPoint.getSignature().getName());
-    }
-
-    @AfterThrowing("logMe()")
-    public void logAfterThrowing(JoinPoint joinPoint) {
-        System.out.println("Log after throwing the method: " + joinPoint.getSignature().getName());
-    }
-
-//    @Around("execution(* edu.miu.springaop.controller.ProductController.*(..))")
-//    public void logAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-//        System.out.println("BEFORE Log around:" + proceedingJoinPoint.getSignature().getName());
-//        proceedingJoinPoint.proceed();
-//        System.out.println("AFTER Log around:" + proceedingJoinPoint.getSignature().getName());
-//    }
 }
